@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>remove</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'add_courses/css/styles.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="container">
+      <h1>Are you sure you want to remove the following course?</h1>
+      <h2>{{course.name}}</h2>
+      <form class="myForms" action="/destroy/{{course.id}}" method="post">
+        {% csrf_token %}
+        <input type="submit" name="destroy" value="Remove">
+      </form>
+
+      <form class="myForms" action="/" method="post">
+        {% csrf_token %}
+        <input type="submit" name="go_back" value="Don't Remove">
+      </form>
+    </div>
+  </body>
+</html>

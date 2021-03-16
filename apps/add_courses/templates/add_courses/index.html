@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Add Courses</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'add_courses/css/styles.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="container">
+      <h1 class="titles main_title">Course Tracker</h1>
+      <div class="messages">
+        {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+      <div id="add_course">
+        <form action="/add_course" method="post">
+          {% csrf_token %}
+          <fieldset>
+            <legend class="titles">Add a Course</legend>
+            <div class="add_attributes">
+              <label>Course Name: </label>
+              <input type="text" name="c_name">
+            </div>
+            <div class="add_attributes">
+              <label>Course Description: </label>
+              <textarea name="desc" rows="4" cols="30">
+              </textarea>
+            </div>
+            <div class="add_attributes">
+              <input type="submit" value="submit">
+            </div>
+          </fieldset>
+        </form>
+      </div>
+
+      <div id="my_courses">
+        <fieldset>
+          <legend class="titles">My Course</legend>
+          {% for course,newTime in myLists %}
+            <div class="my_course_container">
+              <div class="course_attributes">
+                <label>Course ID: </label>
+                <p>{{course.id}}</p>
+              </div>
+              <div class="course_attributes">
+                <label>Course Name: </label>
+                <p>{{course.name}}</p>
+              </div>
+              <div class="course_attributes">
+                <label>Description: </label>
+                <p>{{course.desc}}</p>
+              </div>
+              <div class="course_attributes">
+                <label>Date Added: </label>
+                <p>{{newTime}}</p>
+              </div>
+              <div class="course_attributes remove_btn">
+                <label>Actions: </label>
+                <a href="/remove/{{course.id}}">remove</a>
+              </div>
+            </div>
+          {% endfor %}
+        </fieldset>
+      </div>
+    </div> <!-- container -->
+  </body>
+</html>
