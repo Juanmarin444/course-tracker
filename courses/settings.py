@@ -26,7 +26,7 @@ SECRET_KEY = 'gvx_*1r2u!)ss@d0^12m!b9mu35=y+_$vwu#_lcba1fp3sqkg$'
 DEBUG = True
 # DEBUG = False #{new}
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['limitless-thicket-74505.herokuapp.com']
 
 
 # Application definition
